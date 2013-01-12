@@ -46,7 +46,7 @@
     "findit": "~0.1.2"
   },
   "devDependencies": {
-    "grunt": "~0.3.15"
+    "grunt": "~0.3.17"
   },
   "keywords": [
     "dox",

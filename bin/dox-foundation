@@ -45,7 +45,7 @@ program.on('--help', function(){
 program.parse(process.argv);
 
 if(program.template){
-  formatter.template = fs.readFileSync(program.template).toString();
+  formatter.templatePath = program.template;
 }
 
 // If the program specifies a source directory

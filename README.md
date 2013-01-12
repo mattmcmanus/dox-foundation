@@ -31,7 +31,7 @@ $ dox-foundation --help
     $ dox-foundation > myfile.html
 
     # operates over stdio
-    $ dox-foundation < myfile.js > myfile.html
+    $ dox-foundation --title "myFile documentation" < myfile.js > myfile.html
 
     # parse a whole folder
     $ dox-foundation --source lib --target docs

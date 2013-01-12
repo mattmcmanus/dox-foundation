@@ -42,18 +42,21 @@ html
     .row
       #nav.three.columns
         ul.side-nav
-          mixin subnav(files)
-            each file in files
-              if file.methods.length
-                li
-                  a(href=file.target)=file.source
-                  ul
-                    each method in file.methods
-                      li
-                        a(href=file.target+'#'+method)= method
-          
           if locals.structure
-            mixin subnav(structure)
+            each file in structure
+              if file.methods
+                if file.target
+                  li
+                    a(href=file.target)=file.source
+                    ul
+                      each method in file.methods
+                        li
+                          a(href=file.target+'#'+method)= method
+                else
+                  each method in file.methods
+                    li
+                      a(href='#'+method)= method
+
 
       .nine.columns
         each comment in comments

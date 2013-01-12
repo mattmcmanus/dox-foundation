@@ -4,7 +4,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: '<json:package.json>',
     lint: {
-      files: ['grunt.js', 'bin/**/*', 'lib/**/*.js']
+      files: ['grunt.js', 'bin/**/*', 'lib/**/*.js', 'test/**/*.js']
+    },
+    test: {
+      files: ['test/**/*.js']
     },
     watch: {
       files: '<config:lint.files>',
@@ -22,7 +25,9 @@ module.exports = function(grunt) {
         undef: true,
         boss: true,
         eqnull: true,
-        node: true
+        node: true,
+        es5: true,
+        strict: false
       },
       globals: {
         exports: true
@@ -31,6 +36,6 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', 'lint');
+  grunt.registerTask('default', 'lint test');
 
 };

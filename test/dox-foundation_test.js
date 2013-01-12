@@ -1,5 +1,5 @@
 var formcaster = require('../lib/dox-foundation.js'),
-    exec = require('child_process').execFile,
+    exec = require('child_process').exec,
     cmd = require('path').resolve(__dirname + '/../bin/dox-foundation');
 
 /*
@@ -23,10 +23,26 @@ var formcaster = require('../lib/dox-foundation.js'),
 */
 
 exports['dox-foundation'] = {
-  'should return its version': function(test) {
+  'should return the correct version': function(test) {
     test.expect(1);
-    var version = exec(cmd, ['-V'], null, function(err, stdout, stderr){
+    var version = exec(cmd + ' -V', null, function(err, stdout, stderr){
       test.equal(stdout.trim(), require('../package').version);
+      test.done();
+    });
+  },
+  'should not error when using stdio': function(test) {
+    test.expect(2);
+    var testFile = require('path').resolve(__dirname + '/../lib/dox-foundation.js');
+    var version = exec(cmd + '<' + testFile, null, function(err, stdout, stderr){
+      test.ok(stdout);
+      test.equal(stderr, "");
+      test.done();
+    });
+  },
+  'should not error when parsing directories': function(test) {
+    test.expect(1);
+    var version = exec(cmd + ' --source lib --target docs', null, function(err, stdout, stderr){
+      test.equal(stderr, "");
       test.done();
     });
   }

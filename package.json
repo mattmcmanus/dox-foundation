@@ -43,7 +43,7 @@
     "commander": "0.5.2",
     "jade": "*",
     "mkdirp": "*",
-    "findit": "~0.1.2"
+    "walkdir": "~0.0.5"
   },
   "devDependencies": {
     "grunt": "~0.3.17"

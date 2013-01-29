@@ -13,13 +13,13 @@ html
           if locals.structure
             each file in structure
               if file.methods
-                if file.target
+                if file.link
                   li
-                    a(href=file.target)=file.source
+                    a(href=file.link)=file.source
                     ul
                       each method in file.methods
                         li
-                          a(href=file.target+'#'+method)= method
+                          a(href=file.link+'#'+method)= method
                 else
                   each method in file.methods
                     li

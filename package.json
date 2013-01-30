@@ -15,6 +15,15 @@
     {
       "name": "Francois-Guillaume Ribreau",
       "email": "npm@fgribreau.com"
+    },
+    {
+      "name": "Ryan Day",
+      "email": "soldair@gmail.com"
+    },
+    {
+      "name": "Alexander Vassbotn Røyne-Helgesen",
+      "email": "alexander@phun-ky.net",
+      "url": "http://phun-ky.net"
     }
   ],
   "repository": {
@@ -43,12 +52,10 @@
     "commander": "0.5.2",
     "jade": "*",
     "mkdirp": "*",
-    "findit": "~0.1.2"
-    
+    "walkdir": "~0.0.5"
   },
   "devDependencies": {
-    "grunt": "~0.3.17",
-    "colors": "~0.6.0-1"
+    "grunt": "~0.3.17"
   },
   "keywords": [
     "dox",

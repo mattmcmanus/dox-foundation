@@ -21,7 +21,7 @@ $ dox-foundation --help
     -d, --debug                 output parsed comments for debugging
     -t, --title <string>        The title for the page produced
     -s, --source <source>       The folder which should get parsed
-    -i, --ignore <directories>  Comma seperated list of directories to ignore. Default: test,public,static,views,templates
+    -i, --ignore <directories>  Comma seperated list of directories to ignore. Overrides the defaults of test, public, static, views, templates
     -T, --target <target>       The folder which will contain the results. Default: <process.cwd()>/docs
     --template <jade template>  The jade template file to use
 

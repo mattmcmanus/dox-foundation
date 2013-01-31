@@ -21,11 +21,11 @@ program
   .version(formatter.version)
   .option('-r, --raw', 'output \'raw\' comments, leaving the markdown intact')
   .option('-d, --debug', 'output parsed comments for debugging')
-  .option('-t, --title <string>', 'The title for the page produced')
-  .option('-s, --source <source>', 'The folder which should get parsed')
-  .option('-i, --ignore <directories>', 'Comma seperated list of directories to ignore. Default: ' + ignoredDirs)
-  .option('-T, --target <target>', 'The folder which will contain the results. Default: <process.cwd()>/docs')
-  .option('--template <jade template>', 'The jade template file to use');
+  .option('-t, --title <string>', 'The title of the library or program you are generating code for (eg: Express). Overrides default of "Documentation"')
+  .option('-s, --source <source>', 'The folder which should be parsed')
+  .option('-i, --ignore <directories>', 'Comma seperated list of directories to ignore. Overrides default of ' + ignoredDirs)
+  .option('-T, --target <target>', 'The folder which will contain the generated documentation. Default: <process.cwd()>/docs')
+  .option('--template <jade template>', 'A custom jade template file, overriding the default');
 
 // examples
 program.on('--help', function(){
@@ -38,7 +38,7 @@ program.on('--help', function(){
   console.log('    $ dox-foundation < myfile.js > myfile.html');
   console.log('');
   console.log('    # parse a whole folder');
-  console.log('    $ dox-foundation --source ./lib --target ./docs');
+  console.log('    $ dox-foundation --source lib --target docs');
 });
 
 // parse argv

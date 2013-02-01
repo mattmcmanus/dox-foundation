@@ -63,7 +63,7 @@ if (program.source) {
 
   // Dox all those files
   files = formatter.doxFiles(source, target, { raw: program.raw }, files);
-
+ 
   files.push({
     sourceFile: 'index.html',
     targetFile: 'index.html',

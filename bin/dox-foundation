@@ -70,9 +70,14 @@ if (program.source) {
     dox: []
   });
 
-  var options = {
-    title: program.title || require(process.cwd() + '/package').name
-  };
+  var options = {};
+  if (program.title){
+    options.title = program.title;
+  } else if(fs.existsSync(process.cwd() + '/package')) {
+    options.title = require(process.cwd() + '/package').name;
+  } else {
+    options.title = 'Documentation';
+  }
 
   // Render and save each file
   files.forEach(function(file) {

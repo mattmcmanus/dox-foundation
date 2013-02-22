@@ -51,22 +51,22 @@ if(program.template){
 // If the program specifies a source directory
 if (program.source) {
   var target  = path.resolve(process.cwd(), program.target) || process.cwd() + '/docs',
-      source  = path.resolve(process.cwd(), program.source),
-      ignore  = program.ignore || ignoredDirs;
+      ignore  = program.ignore || ignoredDirs, source = program.source;
 
   // Cleanup and turn into an array the ignoredDirs
   ignore = ignore.trim().replace(' ','').split(',');
 
   // Find, cleanup and validate all potential files
   var files = formatter.collectFiles(source, ignore);
-  formatter.createTargetFolders(target, files);
+  formatter.createTargetFolders(target, files); 
 
   // Dox all those files
   files = formatter.doxFiles(source, target, { raw: program.raw }, files);
-
+ 
+  // Set correct paths to produce the index.html file
   files.push({
-    sourceFile: 'index.html',
-    targetFile: 'index.html',
+    sourceFile: path.relative(process.cwd(), target) + path.sep + 'index.html',
+    targetFile: path.relative(process.cwd(), target) + path.sep + 'index.html',
     dox: []
   });
 
@@ -79,8 +79,8 @@ if (program.source) {
     options.subTitle = file.sourceFile;
 
     var output = formatter.render(file, files, options);
-
-    fs.writeFileSync(target + '/' + file.targetFile, output);
+    
+    fs.writeFileSync(file.targetFile, output);
   });
 
 } else {

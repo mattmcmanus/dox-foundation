@@ -13,13 +13,13 @@ html
           if locals.structure
             each file in structure
               if file.methods
-                if file.target
+                if file.link
                   li
-                    a(href=file.target)=file.source
+                    a(href=file.link)=file.source
                     ul
                       each method in file.methods
                         li
-                          a(href=file.target+'#'+method)= method
+                          a(href=file.link+'#'+method)= method
                 else
                   each method in file.methods
                     li
@@ -47,6 +47,18 @@ html
                         span.description=tag.description
                       if tag.local
                         span.local= tag.local
+                      if tag.string
+                        span.string=tag.string
+                      if tag.calls
+                        span.calls=tag.calls
+                      if tag.key
+                        span.key=tag.key
+                      if tag.value
+                        span.value=tag.value
+                      if tag.context
+                        span.context=tag.context
+                      if tag.source
+                        span.source=tag.source
             .description
               !=comment.description.full
 

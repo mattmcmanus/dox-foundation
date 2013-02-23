@@ -57,7 +57,7 @@ if (program.source) {
   ignore = ignore.trim().replace(' ','').split(',');
 
   // Find, cleanup and validate all potential files
-  var files = formatter.collectFiles(source, ignore);
+  var files = formatter.collectFiles(source, { ignore: ignore });
   formatter.createTargetFolders(target, files); 
 
   // Dox all those files

@@ -19,16 +19,5 @@ script
 
   $(function(){
     $('pre').addClass('language-javascript');
-    $('#nav > ul > li > a[href$="'+location.pathname.substring(location.pathname.lastIndexOf('/')+1, location.pathname.length)+'"]').parent().addClass('active')
-    $(window).scroll(function() {
-      if ($(this).scrollTop() > headerHeight) {
-        var offset = ($('#nav li.active').length) 
-          ? '-' + $('#nav li.active').position().top
-          : 0
-
-        $("#nav").css({ "position": "fixed", "top": + offset + 'px' });
-      } else {
-        $("#nav").css({ "position": "static" }); //same here
-      }         
-    });
+    $('#nav > ul > li > a[href$="'+location.pathname.substring(location.pathname.lastIndexOf('/')+1, location.pathname.length)+'"]').parent().addClass('active');
   })

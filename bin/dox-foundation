@@ -82,8 +82,6 @@ if (program.source) {
 
   // Render and save each file
   files.forEach(function(file) {
-    options.subTitle = file.sourceFile;
-
     var output = formatter.render(file, files, options);
       
     var dir = path.dirname(file.targetFile);

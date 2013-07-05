@@ -1,5 +1,7 @@
 # dox-foundation
 
+[![Dependency Status](https://gemnasium.com/punkave/dox-foundation.png)](https://gemnasium.com/punkave/dox-foundation)
+
 Use [dox](https://github.com/visionmedia/dox) to automatically generate beautiful html documentation.
 
 Outputted HTML is based on templates and css from [ZURB's Foundation](http://foundation.zurb.com/) and syntax highlighting is done by [Prism.js](http://prismjs.com/).

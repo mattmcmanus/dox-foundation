@@ -5,66 +5,64 @@ html
 
   body
     .row
-      .twelve.columns
-        h1.pagetitle= title
+      .small-12.columns
+        h1.page-title= title
+          small=' '+subTitle
     .row
-      #nav.three.columns
-        ul.side-nav
+      #nav.large-3.columns
+        .section-container.accordian(data-section="accordian", data-options="")
           if locals.structure
             each file in structure
-              if file.methods
-                if file.link
-                  li
-                    a(href=file.link)=file.source
-                    ul
+              .section(class=(currentFile === file.source) ? 'active':'')
+                if file.methods
+                  if file.link
+                    p.title(data-section-title)
+                      a(href=file.link)=file.source
+                    .content(data-section-content)
+                      ul.side-nav
+                        each method in file.methods
+                          li
+                            a(href=file.link+'#'+method)= method
+                  else
+                    ul.side-nav
                       each method in file.methods
                         li
-                          a(href=file.link+'#'+method)= method
-                else
-                  each method in file.methods
-                    li
-                      a(href='#'+method)= method
+                          a(href='#'+method)= method
 
 
-      .nine.columns
+      .small-12.large-9.columns
         each comment in comments
-          .comment
-            if comment.ctx
-              .label.radius.ctx-type=comment.ctx.type
-              h1(id=comment.ctx.name)= comment.ctx.name
-              h5.subheader= comment.ctx.string
-            .tags
-              ul.no-bullet
-                each tag in comment.tags
-                  unless tag.type == 'api'
-                    li
-                      strong="@"+tag.type + ": "
-                      if tag.types
-                        span.types=' {'+tag.types + '} '
-                      if tag.name
-                        span.name=tag.name+' '
-                      if tag.description
-                        span.description=tag.description
-                      if tag.local
-                        span.local= tag.local
-                      if tag.string
-                        span.string=tag.string
-                      if tag.calls
-                        span.calls=tag.calls
-                      if tag.key
-                        span.key=tag.key
-                      if tag.value
-                        span.value=tag.value
-                      if tag.context
-                        span.context=tag.context
-                      if tag.source
-                        span.source=tag.source
-            .description
-              !=comment.description.full
+          article.comment
+            header
+              if comment.ctx
+                h1(id=comment.ctx.name)= comment.ctx.name
+                h5.subheader
+                  .label.radius.ctx-type=comment.ctx.type
+                  = comment.ctx.string
 
-            if comment.code
-              pre
-                code.language-javascript
-                  =comment.code
+            ul.no-bullet.tags
+              each tag in comment.tags
+                unless tag.type == 'api'
+                  li.tag
+                    span.type="@"+tag.type + ": "
+                    each value, key in tag
+                      if (['type'].indexOf(key) === -1)
+                        - if (key === 'types') value="{"+value+"}"
+                        span(class=key)= value
+            
+            .section-container.code.auto(data-section="accordian", data-options="one_up: false;")
+              .section
+                p.title(data-section-title)
+                  a(href='#') Description
+                .content.description(data-section-content)
+                  !=comment.description.full
+              if comment.code
+                .section
+                  p.title(data-section-title)
+                    a(href='#') Source
+                  .content(data-section-content)
+                    pre
+                      code.language-javascript
+                        =comment.code
 
     include ./_footer.jade

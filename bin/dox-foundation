@@ -7,6 +7,7 @@
 var program   = require('commander'),
     util      = require('util'),
     fs        = require('fs'),
+    mkdirp    = require('mkdirp'),
     path      = require('path'),
     dox       = require('dox'),
     formatter = require('../lib/dox-foundation');
@@ -58,23 +59,23 @@ if (program.source) {
 
   // Find, cleanup and validate all potential files
   var files = formatter.collectFiles(source, { ignore: ignore });
-  formatter.createTargetFolders(target, files); 
 
   // Dox all those files
   files = formatter.doxFiles(source, target, { raw: program.raw }, files);
  
   // Set correct paths to produce the index.html file
+  var indexPath = path.relative(process.cwd(), target) + path.sep + 'index.html';
   files.push({
-    sourceFile: path.relative(process.cwd(), target) + path.sep + 'index.html',
-    targetFile: path.relative(process.cwd(), target) + path.sep + 'index.html',
+    sourceFile: indexPath,
+    targetFile: indexPath,
     dox: []
   });
 
   var options = {};
   if (program.title){
     options.title = program.title;
-  } else if(fs.existsSync(process.cwd() + '/package')) {
-    options.title = require(process.cwd() + '/package').name;
+  } else if(fs.existsSync(process.cwd() + '/package.json')) {
+    options.title = require(process.cwd() + '/package.json').name;
   } else {
     options.title = 'Documentation';
   }
@@ -84,7 +85,12 @@ if (program.source) {
     options.subTitle = file.sourceFile;
 
     var output = formatter.render(file, files, options);
-    
+      
+    var dir = path.dirname(file.targetFile);
+    if (!fs.existsSync(dir)) {
+      mkdirp.sync(dir);
+    }
+
     fs.writeFileSync(file.targetFile, output);
   });
 

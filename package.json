@@ -1,7 +1,7 @@
 {
   "name": "dox-foundation",
   "description": "HTML output for Dox documentation generator",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "homepage": "https://github.com/punkave/dox-foundation",
   "author": {
     "name": "Matt McManus",

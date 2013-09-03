@@ -16,7 +16,7 @@ var program   = require('commander'),
  * Options & Defaults
  */
 
-var ignoredDirs = 'test,public,static,views,templates';
+var ignoredDirs = 'test,static,templates,node_modules';
 
 program
   .version(formatter.version)
@@ -25,7 +25,7 @@ program
   .option('-t, --title <string>', 'The title of the library or program you are generating code for (eg: Express). Overrides default of "Documentation"')
   .option('-s, --source <source>', 'The folder(s) which should be parsed. Multiple folders should be comma separated')
   .option('-i, --ignore <directories>', 'Comma seperated list of directories to ignore. Overrides default of ' + ignoredDirs)
-  .option('-T, --target <target>', 'The folder which will contain the generated documentation. Default: <process.cwd()>/docs')
+  .option('-T, --target <target>', 'The folder which will contain the generated documentation. Default: <process.cwd()>/docs', 'docs')
   .option('--template <jade template>', 'A custom jade template file, overriding the default');
 
 // examples
@@ -51,7 +51,7 @@ if(program.template){
 
 // If the program specifies a source directory
 if (program.source) {
-  var target  = path.resolve(process.cwd(), program.target) || process.cwd() + '/docs',
+  var target  = path.resolve(process.cwd(), program.target),
       ignore  = program.ignore || ignoredDirs, source = program.source;
 
   // Cleanup and turn into an array the ignoredDirs
@@ -62,7 +62,7 @@ if (program.source) {
 
   // Dox all those files
   files = formatter.doxFiles(source, target, { raw: program.raw }, files);
- 
+
   // Set correct paths to produce the index.html file
   var indexPath = path.relative(process.cwd(), target) + path.sep + 'index.html';
   files.push({
@@ -83,7 +83,7 @@ if (program.source) {
   // Render and save each file
   files.forEach(function(file) {
     var output = formatter.render(file, files, options);
-      
+
     var dir = path.dirname(file.targetFile);
     if (!fs.existsSync(dir)) {
       mkdirp.sync(dir);

@@ -51,8 +51,10 @@ if(program.template){
 
 // If the program specifies a source directory
 if (program.source) {
-  var target  = path.resolve(process.cwd(), program.target) || process.cwd() + '/docs',
-      ignore  = program.ignore || ignoredDirs, source = program.source;
+  var target  = (program.target)
+    ? path.resolve(process.cwd(), program.target)
+    : process.cwd() + '/docs';
+  var ignore  = program.ignore || ignoredDirs, source = program.source;
 
   // Cleanup and turn into an array the ignoredDirs
   ignore = ignore.trim().replace(' ','').split(',');
@@ -62,7 +64,7 @@ if (program.source) {
 
   // Dox all those files
   files = formatter.doxFiles(source, target, { raw: program.raw }, files);
- 
+
   // Set correct paths to produce the index.html file
   var indexPath = path.relative(process.cwd(), target) + path.sep + 'index.html';
   files.push({
@@ -83,7 +85,7 @@ if (program.source) {
   // Render and save each file
   files.forEach(function(file) {
     var output = formatter.render(file, files, options);
-      
+
     var dir = path.dirname(file.targetFile);
     if (!fs.existsSync(dir)) {
       mkdirp.sync(dir);

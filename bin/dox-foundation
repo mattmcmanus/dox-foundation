@@ -16,7 +16,7 @@ var program   = require('commander'),
  * Options & Defaults
  */
 
-var ignoredDirs = 'test,public,static,views,templates';
+var ignoredDirs = 'test,static,templates,node_modules';
 
 program
   .version(formatter.version)
@@ -25,7 +25,7 @@ program
   .option('-t, --title <string>', 'The title of the library or program you are generating code for (eg: Express). Overrides default of "Documentation"')
   .option('-s, --source <source>', 'The folder(s) which should be parsed. Multiple folders should be comma separated')
   .option('-i, --ignore <directories>', 'Comma seperated list of directories to ignore. Overrides default of ' + ignoredDirs)
-  .option('-T, --target <target>', 'The folder which will contain the generated documentation. Default: <process.cwd()>/docs')
+  .option('-T, --target <target>', 'The folder which will contain the generated documentation. Default: <process.cwd()>/docs', 'docs')
   .option('--template <jade template>', 'A custom jade template file, overriding the default');
 
 // examples

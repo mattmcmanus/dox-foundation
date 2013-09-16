@@ -6,6 +6,8 @@ Use [dox](https://github.com/visionmedia/dox) to automatically generate beautifu
 
 Outputted HTML is based on templates and css from [ZURB's Foundation](http://foundation.zurb.com/) and syntax highlighting is done by [Prism.js](http://prismjs.com/).
 
+## Example time!
+
 ![A little sneak](http://i.cloudup.com/q9XWQ9B7qk.png)
 
 ## Installation

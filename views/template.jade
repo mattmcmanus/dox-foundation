@@ -7,7 +7,8 @@ html
     .row
       .small-12.columns
         h1.page-title= title
-          small=' '+subTitle
+          if subTitle
+            small=' '+subTitle
     .row
       #nav.large-3.columns
         .section-container.accordian(data-section="accordian", data-options="")
@@ -27,7 +28,7 @@ html
                             li
                               a(href=file.link+'#'+method)= method
                     else
-                      ul.side-nav
+                      ul.side-nav.solo
                         each method in file.methods
                           li
                             a(href='#'+method)= method
@@ -52,7 +53,7 @@ html
                       if (['type'].indexOf(key) === -1)
                         - if (key === 'types') value="{"+value+"}"
                         span(class=key)= value
-            
+
             .section-container.code.auto(data-section="accordian", data-options="one_up: false;")
               .section
                 p.title(data-section-title)

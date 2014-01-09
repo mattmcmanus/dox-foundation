@@ -8,6 +8,8 @@ Outputted HTML is based on templates and css from [ZURB's Foundation](http://fou
 
 ## Example time!
 
+See <http://dox-foundation-demo.herokuapp.com/> ([source](https://github.com/tlvince/dox-foundation-demo)) for an interactive demo, ran against Express.
+
 ![A little sneak](http://i.cloudup.com/q9XWQ9B7qk.png)
 
 ## Installation

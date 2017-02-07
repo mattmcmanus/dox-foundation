@@ -1,5 +1,7 @@
 # dox-foundation
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mattmcmanus/dox-foundation.svg)](https://greenkeeper.io/)
+
 [![Dependency Status](https://gemnasium.com/punkave/dox-foundation.png)](https://gemnasium.com/punkave/dox-foundation)
 
 Use [dox](https://github.com/visionmedia/dox) to automatically generate beautiful html documentation.
